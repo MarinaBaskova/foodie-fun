@@ -2,9 +2,9 @@ exports.up = function(knex, Promise) {
   return knex.schema
     .createTable("users", field => {
       field.increments();
-      field.text("username", 50).unique();
+      field.text("username", 50);
       field.text("password", 50);
-      field.text("email", 50).unique();
+      field.text("email", 50);
     })
     .createTable("restaurants", field => {
       field.increments();
@@ -53,7 +53,7 @@ exports.up = function(knex, Promise) {
         .unsigned()
         .references("id")
         .inTable("users")
-        .onDelete("RESTRICT")
+        .onDelete("CASCADE")
         .onUpdate("CASCADE");
       field
         .integer("dish_id")
